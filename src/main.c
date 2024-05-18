@@ -12,6 +12,7 @@ void kaeru() {
     gpt_entry_t *gpt_entries;
     gpt_entries = parse_gpt();
 
+    //video_printf("Hi i am a lenovo smart clock");
     // Jump to original app()
     int ret = app();
 

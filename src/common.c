@@ -69,12 +69,12 @@ void patch_lk_late() {
 
 void kaeru_early_init() {
     __asm__("mcr p15, 0, %0, c7, c5, 0" : : "r" (0));
-    patch_lk_early();
+    //patch_lk_early();
     dprintf("Early initialization complete!\n");
 }
 
 void kaeru_late_init() {
-    patch_lk_late();
+   // patch_lk_late();
     handle_late_bootmode();
     register_commands();
     LOGD("Late initialization complete!\n");
