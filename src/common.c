@@ -7,15 +7,15 @@
 #include <stdbool.h>
 
 void platform_init() {
-    ((void (*)(void))(0x48007a80 | 1))();
+    ((void (*)(void))(0x41e0124c | 1))();
 }
 
 int app() {
-    return ((int (*)(void))(0x48028c78 | 1))();
+    return ((int (*)(void))(0x41e12134 | 1))();
 }
 
 bool mtk_detect_key(unsigned short key) {
-    return ((bool (*)(unsigned short))(0x4800942c | 1))(key);
+    return ((bool (*)(unsigned short))(0x41e03238 | 1))(key);
 }
 
 void patch_lk_early() {
@@ -41,10 +41,10 @@ void patch_lk_late() {
     x[0] = 0x4770; // bx lr
     arch_clean_invalidate_cache_range((uint32_t)x, 2);
 
-    x = (volatile uint16_t *)0x48029ff8; // fastboot_oem_wrapper
-    x[0] = 0x46c0; // nop
-    x[1] = 0x46c0; // nop
-    arch_clean_invalidate_cache_range((uint32_t)x, 4);
+    //x = (volatile uint16_t *)0x48029ff8; // fastboot_oem_wrapper
+    //x[0] = 0x46c0; // nop
+    //x[1] = 0x46c0; // nop
+    //arch_clean_invalidate_cache_range((uint32_t)x, 4);
 
     x = (volatile uint16_t *)0x480309c4; // power_check
     x[0] = 0x2001; // movs r0, #1
